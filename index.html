@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRIS'26 - Artificial Intelligence: Research Innovation & Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary-blue: #1a365d;
+            --accent-yellow: #facc15;
+            --text-light: #f8fafc;
+            --bg-dark: #0f172a;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+        }
+        .hero-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=2000') center/cover no-repeat;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+        .card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-yellow);
+        }
+        .accent-border {
+            border-left: 4px solid var(--accent-yellow);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: var(--accent-yellow);
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-yellow);
+            transition: width 0.3s ease;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .mobile-menu-btn {
+            transition: transform 0.3s ease;
+        }
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Animation Styles */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(250, 204, 21, 0);
+            }
+        }
+
+        /* Section animations */
+        section {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        section:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        section:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        section:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        section:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+
+        section:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+
+        /* Hero section title animation */
+        .hero-title {
+            animation: fadeInDown 1s ease-out;
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 1s ease-out 0.2s forwards;
+            opacity: 0;
+        }
+
+        .hero-buttons {
+            animation: fadeInUp 1s ease-out 0.4s forwards;
+            opacity: 0;
+        }
+
+        /* Card animations */
+        .card {
+            animation: slideInScale 0.6s ease-out;
+        }
+
+        .card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .card:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .card:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        /* Text animations */
+        h2 {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .accent-border {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+
+        /* Stagger animation for list items */
+        .leadership-item {
+            animation: fadeInLeft 0.6s ease-out;
+        }
+
+        .leadership-item:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .leadership-item:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .leadership-item:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .leadership-item:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        /* Button hover animation */
+        button, a[href*="forms.gle"], .bg-yellow-400 {
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before, a[href*="forms.gle"]::before, .bg-yellow-400::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        button:hover::before, a[href*="forms.gle"]:hover::before, .bg-yellow-400:hover::before {
+            left: 100%;
+        }
+
+        /* Scroll reveal animation */
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Smooth scroll behavior for navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation link active state animation */
+        .nav-link.active {
+            color: var(--accent-yellow);
+        }
+
+        .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="font-bold text-2xl text-yellow-400 hover:text-yellow-300 transition smooth-scroll">AIRIS '26</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#home" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Home</a>
+                    <a href="#about" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">About</a>
+                    <a href="#leadership" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Leadership</a>
+                    <a href="#pillars" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Research Pillars</a>
+                    <a href="#dates" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Important Dates</a>
+                    <a href="https://forms.gle/a7QRtyddsyyqjuQY7" target="_blank" class="ml-4 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full text-sm font-bold hover:bg-yellow-300 transition shadow-lg shadow-yellow-400/20">Submit</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" class="md:hidden mobile-menu-btn p-2 rounded-lg hover:bg-slate-800 transition" aria-label="Toggle menu">
+                    <span class="block w-6 h-0.5 bg-white mb-1.5 transition-all"></span>
+                    <span class="block w-6 h-0.5 bg-white mb-1.5 transition-all"></span>
+                    <span class="block w-6 h-0.5 bg-white transition-all"></span>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="#home" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Home</a>
+                <a href="#about" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">About</a>
+                <a href="#leadership" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Leadership</a>
+                <a href="#pillars" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Research Pillars</a>
+                <a href="#dates" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Important Dates</a>
+                <a href="https://forms.gle/a7QRtyddsyyqjuQY7" target="_blank" class="block w-full text-center bg-yellow-400 text-slate-900 px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-300 transition mt-2">Submit Contribution</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section min-h-screen flex items-center pt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+            <p class="text-yellow-400 font-bold tracking-widest mb-4 hero-title">UNIVERSITY OF MASCARA | LABTEC AI</p>
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight hero-title">
+                THE FIRST NATIONAL CONFERENCE ON<br>
+                <span class="text-yellow-400">ARTIFICIAL INTELLIGENCE:</span><br>
+                RESEARCH INNOVATION & SYSTEMS
+            </h1>
+            <p class="text-xl text-slate-300 max-w-3xl mx-auto mb-10 hero-subtitle">
+                AIRIS'26 unites researchers, industry experts, and policymakers to explore AI advances and shape the future of intelligent systems in Algeria.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4 hero-buttons">
+                <a href="#dates" class="bg-yellow-400 text-slate-900 px-8 py-3 rounded-full font-bold text-lg hover:bg-yellow-300 transition smooth-scroll">View Deadlines</a>
+                <a href="https://web.univ-mascara.dz/events/pages/AIRIS26" target="_blank" class="border-2 border-white px-8 py-3 rounded-full font-bold text-lg hover:bg-white hover:text-slate-900 transition">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">ABOUT THE CONFERENCE</h2>
+                <div class="h-1 w-24 bg-yellow-400 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="scroll-reveal">
+                    <h3 class="text-2xl font-bold mb-6">What is AIRIS'26?</h3>
+                    <p class="text-slate-300 mb-4 leading-relaxed">
+                        The First National Conference on Artificial Intelligence: Research, Innovation & Systems (AIRIS'26) is a premier event organized by the Faculty of Exact Sciences at the University of Mascara in partnership with the LABTEC AI laboratory.
+                    </p>
+                    <p class="text-slate-300 mb-4 leading-relaxed">
+                        This conference brings together leading researchers, industry experts, and policymakers to explore cutting-edge AI advances and shape the future of intelligent systems in Algeria.
+                    </p>
+                    <p class="text-slate-300 leading-relaxed">
+                        The event features keynote lectures, technical sessions, panel discussions, and networking opportunities focused on emerging AI technologies and their societal impact.
+                    </p>
+                </div>
+                <div class="space-y-6">
+                    <div class="card p-6 rounded-xl scroll-reveal">
+                        <h4 class="text-lg font-bold text-yellow-400 mb-2">📍 Location</h4>
+                        <p class="text-slate-300">University of Mascara, Faculty of Exact Sciences, Algeria</p>
+                    </div>
+                    <div class="card p-6 rounded-xl scroll-reveal">
+                        <h4 class="text-lg font-bold text-yellow-400 mb-2">📅 Date</h4>
+                        <p class="text-slate-300">October 14, 2026</p>
+                    </div>
+                    <div class="card p-6 rounded-xl scroll-reveal">
+                        <h4 class="text-lg font-bold text-yellow-400 mb-2">🎯 Focus Areas</h4>
+                        <p class="text-slate-300">AI Research, Innovation, Systems, and Societal Impact</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Section -->
+    <section id="leadership" class="py-24 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">CONFERENCE LEADERSHIP</h2>
+                <div class="h-1 w-24 bg-yellow-400 mx-auto"></div>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Chairmen -->
+                <div class="space-y-8">
+                    <div class="scroll-reveal">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-4 uppercase tracking-wider">Honorary Chairmen</h3>
+                        <div class="space-y-4">
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Pr. Younes MOUCHAAL</p>
+                                <p class="text-slate-400 text-sm">Rector of Mustapha Stambouli University Mascara</p>
+                            </div>
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Mohamed ElAmine BAKHTI</p>
+                                <p class="text-slate-400 text-sm">Dean of the Faculty of Exact Sciences (FES)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-reveal">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-4 uppercase tracking-wider">Conference Chairs</h3>
+                        <div class="space-y-4">
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Pr. Kamel Mohamed BENHAOUA</p>
+                                <p class="text-slate-400 text-sm">Head of LABTEC AI, University of Mascara</p>
+                            </div>
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Hadya BOUFERA</p>
+                                <p class="text-slate-400 text-sm">LABTEC AI, University of Mascara</p>
+                            </div>
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Cherifa BOUDIA</p>
+                                <p class="text-slate-400 text-sm">LABTEC AI, University of Mascara</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Committees -->
+                <div class="space-y-8">
+                    <div class="scroll-reveal">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-4 uppercase tracking-wider">Organizing Committee Chairs</h3>
+                        <div class="space-y-4">
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Hayet MEDDEBER</p>
+                                <p class="text-slate-400 text-sm">LABTEC AI, University of Mascara</p>
+                            </div>
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Sabrine ABID</p>
+                                <p class="text-slate-400 text-sm">LABTEC AI, University of Mascara</p>
+                            </div>
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Rabie BENNAOUMER</p>
+                                <p class="text-slate-400 text-sm">LABTEC AI, University of Mascara</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scroll-reveal">
+                        <h3 class="text-xl font-bold text-yellow-400 mb-4 uppercase tracking-wider">Scientific Chairs</h3>
+                        <div class="space-y-4">
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Mohamed ZAGANE</p>
+                                <p class="text-slate-400 text-sm">LABTEC AI, University of Mascara</p>
+                            </div>
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Meriem MEDDEBER</p>
+                                <p class="text-slate-400 text-sm">LABTEC AI, University of Mascara</p>
+                            </div>
+                            <div class="accent-border pl-4 leadership-item">
+                                <p class="font-bold">Dr. Amine DAHANE</p>
+                                <p class="text-slate-400 text-sm">LABTEC AI, University of Mascara</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Pillars -->
+    <section id="pillars" class="py-24 gradient-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 uppercase">Research Pillars</h2>
+                <div class="h-1 w-24 bg-yellow-400 mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="card p-8 rounded-2xl text-center hover:border-yellow-400 scroll-reveal">
+                    <div class="text-5xl mb-4">🚜</div>
+                    <h3 class="text-lg font-bold mb-2">Precision Agriculture & Sustainability</h3>
+                    <p class="text-slate-400 text-sm">Crop optimization, sustainable resource management using AI.</p>
+                </div>
+                <div class="card p-8 rounded-2xl text-center hover:border-yellow-400 scroll-reveal">
+                    <div class="text-5xl mb-4">🎓</div>
+                    <h3 class="text-lg font-bold mb-2">Future Education & Adaptive Learning</h3>
+                    <p class="text-slate-400 text-sm">Adaptive learning, intelligent platforms, and digital inclusion.</p>
+                </div>
+                <div class="card p-8 rounded-2xl text-center hover:border-yellow-400 scroll-reveal">
+                    <div class="text-5xl mb-4">⚕️</div>
+                    <h3 class="text-lg font-bold mb-2">Smart Healthcare & Medical AI</h3>
+                    <p class="text-slate-400 text-sm">Assisted diagnosis, personalized medicine, and predictive analytics.</p>
+                </div>
+                <div class="card p-8 rounded-2xl text-center hover:border-yellow-400 scroll-reveal">
+                    <div class="text-5xl mb-4">🛡️</div>
+                    <h3 class="text-lg font-bold mb-2">System Security & Cybersecurity</h3>
+                    <p class="text-slate-400 text-sm">Proactive cybersecurity, threat detection with AI, and resilience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Dates & Fees -->
+    <section id="dates" class="py-24 bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16">
+                <!-- Dates Table -->
+                <div class="scroll-reveal">
+                    <h2 class="text-3xl font-bold mb-8 flex items-center">
+                        <span class="mr-4">📅</span> IMPORTANT DATES
+                    </h2>
+                    <div class="overflow-hidden rounded-xl border border-white/10">
+                        <table class="w-full text-left">
+                            <thead class="bg-slate-800">
+                                <tr>
+                                    <th class="px-6 py-4 font-bold text-yellow-400">MILESTONE</th>
+                                    <th class="px-6 py-4 font-bold text-yellow-400">DATE</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/10">
+                                <tr>
+                                    <td class="px-6 py-4">Submission Deadline</td>
+                                    <td class="px-6 py-4 font-semibold">Sept 15, 2026</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4">Notification of Acceptance</td>
+                                    <td class="px-6 py-4 font-semibold">Oct 1, 2026</td>
+                                </tr>
+                                <tr>
+                                    <td class="px-6 py-4">Registration Deadline</td>
+                                    <td class="px-6 py-4 font-semibold">Oct 8, 2026</td>
+                                </tr>
+                                <tr class="bg-yellow-400/10">
+                                    <td class="px-6 py-4 font-bold">Conference Date</td>
+                                    <td class="px-6 py-4 font-bold text-yellow-400">Oct 14, 2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Registration Fees -->
+                <div class="scroll-reveal">
+                    <h2 class="text-3xl font-bold mb-8 flex items-center">
+                        <span class="mr-4">💰</span> REGISTRATION FEES
+                    </h2>
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="card p-6 rounded-xl border-l-4 border-yellow-400 scroll-reveal">
+                            <p class="text-slate-400 uppercase text-xs font-bold tracking-widest mb-2">Academics</p>
+                            <p class="text-3xl font-bold">4000 DZ</p>
+                        </div>
+                        <div class="card p-6 rounded-xl border-l-4 border-yellow-400 scroll-reveal">
+                            <p class="text-slate-400 uppercase text-xs font-bold tracking-widest mb-2">Students</p>
+                            <p class="text-3xl font-bold">2000 DZ</p>
+                        </div>
+                    </div>
+                    <div class="mt-8 p-6 bg-slate-800 rounded-xl scroll-reveal">
+                        <p class="flex items-center text-slate-300">
+                            <span class="text-yellow-400 mr-2">✓</span> Certificate of participation for all
+                        </p>
+                    </div>
+                    <div class="mt-8 scroll-reveal">
+                        <a href="https://forms.gle/a7QRtyddsyyqjuQY7" target="_blank" class="block w-full text-center bg-yellow-400 text-slate-900 py-4 rounded-xl font-bold text-xl hover:bg-yellow-300 transition shadow-lg shadow-yellow-400/20">
+                            SUBMIT YOUR CONTRIBUTION
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10 bg-slate-950 scroll-reveal">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-400 mb-4">For more information, please contact LABTEC AI, University of Mascara</p>
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-slate-500">
+                <span>📞 Tel: 00213658155163</span>
+                <span>📧 AIRIS26@univ-mascara.dz</span>
+                <a href="https://web.univ-mascara.dz/events/pages/AIRIS26" target="_blank" class="hover:text-yellow-400 transition">🌐 Official Website</a>
+            </div>
+            <p class="mt-8 text-xs text-slate-600">© 2026 LABTEC AI - University of Mascara. Faculty of Exact Sciences.</p>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('nav')) {
+                mobileMenuBtn.classList.remove('active');
+                mobileMenu.classList.add('hidden');
+            }
+        });
+
+        // Scroll reveal animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe all scroll-reveal elements
+        document.querySelectorAll('.scroll-reveal').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a.smooth-scroll').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        const offsetTop = target.offsetTop - 64; // Account for fixed navbar
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Update active nav link based on scroll position
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('a.nav-link');
+            
+            let currentSection = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
