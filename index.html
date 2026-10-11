@@ -283,6 +283,30 @@
         .nav-link.active::after {
             width: 100%;
         }
+
+        /* Isolate the original speaker photographs from the supplied posters. */
+        .speaker-portrait {
+            position: relative;
+            width: min(100%, 273px);
+            aspect-ratio: 273 / 266;
+            overflow: hidden;
+            clip-path: polygon(1% 2%, 81% 2%, 99% 21%, 99% 100%, 21% 100%, 1% 79%);
+            margin-inline: auto;
+        }
+        .speaker-portrait img {
+            position: absolute;
+            width: 281.3187%;
+            max-width: none;
+            height: auto;
+            left: -20.8791%;
+            top: -144.7368%;
+        }
+        #submission a {
+            overflow-wrap: anywhere;
+        }
+        section[id] {
+            scroll-margin-top: 64px;
+        }
     </style>
 </head>
 <body>
@@ -296,9 +320,11 @@
                 </div>
 
                 <!-- Desktop Navigation -->
-                <div class="hidden md:flex items-center space-x-1">
+                <div class="hidden xl:flex items-center space-x-1">
                     <a href="#home" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Home</a>
                     <a href="#about" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">About</a>
+                    <a href="#program" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Program</a>
+                    <a href="#keynotes" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Keynote Speakers</a>
                     <a href="#leadership" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Leadership</a>
                     <a href="#pillars" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Research Pillars</a>
                     <a href="#dates" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Important Dates</a>
@@ -306,7 +332,7 @@
                 </div>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobileMenuBtn" class="md:hidden mobile-menu-btn p-2 rounded-lg hover:bg-slate-800 transition" aria-label="Toggle menu">
+                <button id="mobileMenuBtn" class="xl:hidden mobile-menu-btn p-2 rounded-lg hover:bg-slate-800 transition" aria-label="Toggle menu" aria-controls="mobileMenu" aria-expanded="false">
                     <span class="block w-6 h-0.5 bg-white mb-1.5 transition-all"></span>
                     <span class="block w-6 h-0.5 bg-white mb-1.5 transition-all"></span>
                     <span class="block w-6 h-0.5 bg-white transition-all"></span>
@@ -314,9 +340,11 @@
             </div>
 
             <!-- Mobile Navigation Menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2">
+            <div id="mobileMenu" class="hidden xl:hidden pb-4 space-y-2 max-h-[calc(100dvh-4rem)] overflow-y-auto">
                 <a href="#home" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Home</a>
                 <a href="#about" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">About</a>
+                <a href="#program" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Program</a>
+                <a href="#keynotes" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Keynote Speakers</a>
                 <a href="#leadership" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Leadership</a>
                 <a href="#pillars" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Research Pillars</a>
                 <a href="#dates" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Important Dates</a>
@@ -384,8 +412,8 @@
             </div>
         </div>
     </section>
-
-    <!-- Leadership Section -->
+	
+	<!-- Leadership Section -->
     <section id="leadership" class="py-24 bg-slate-950">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16 scroll-reveal">
@@ -500,6 +528,96 @@
             </div>
         </div>
     </section>
+
+    
+
+    <!-- Keynote Speakers -->
+    <section id="keynotes" class="py-24 bg-slate-900" aria-labelledby="keynotes-heading">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 id="keynotes-heading" class="text-3xl md:text-4xl font-bold mb-4 uppercase">Keynote Speakers</h2>
+                <div class="h-1 w-24 bg-yellow-400 mx-auto"></div>
+            </div>
+            <div class="space-y-12">
+                <article class="card p-6 md:p-10 rounded-2xl" aria-labelledby="kerrache-name">
+                    <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-12 items-start">
+                        <div>
+                            <div class="speaker-portrait mb-6">
+                                <img src="Pr.%20Chaker%20Kerrache%20.png" alt="Professor Chaker Abdelaziz Kerrache" width="768" height="1376" loading="lazy">
+                            </div>
+                            <h3 id="kerrache-name" class="text-2xl font-bold text-yellow-400 mb-4">Pr. Chaker Abdelaziz Kerrache</h3>
+                            <h4 class="font-bold mb-3">Biography &amp; Research Profile</h4>
+                            <p class="text-slate-300 leading-relaxed mb-4">Selected among the world's top two percent of the most influential scientists in the ranking established by Stanford University and Elsevier for three consecutive years: 2024, 2025, and 2026.</p>
+                            <ul class="space-y-2 text-slate-300 text-sm">
+                                <li><strong class="text-yellow-400">3,572</strong> Google Scholar citations</li>
+                                <li>h-index: <strong class="text-yellow-400">34</strong></li>
+                                <li><strong class="text-yellow-400">186</strong> listed scientific production entries</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <div class="accent-border pl-4 mb-6">
+                                <p class="text-yellow-400 text-sm font-bold uppercase tracking-wider mb-3">Keynote Talk</p>
+                                <h4 class="text-2xl md:text-3xl font-bold leading-snug">Strengthening Brain-Computer Interfaces Against Adversarial Threats: From Exposed Weaknesses to Robust AI Solutions</h4>
+                            </div>
+                            <h5 class="text-lg font-bold mb-3">Abstract</h5>
+                            <div class="text-slate-300 leading-relaxed space-y-4">
+                                <p>Brain-Computer Interfaces (BCIs) are rapidly advancing neurotechnology by enabling direct communication between the human brain and intelligent systems. Despite their transformative potential, BCI platforms remain highly vulnerable to security threats, particularly adversarial attacks targeting their underlying machine learning models.</p>
+                                <p>This keynote examines the emerging adversarial threat landscape in BCI systems, emphasizing how such attacks can undermine signal reliability, system performance, and user safety. The talk critically analyzes the shortcomings of conventional deep learning approaches and how more sophisticated architectures, including Capsule Networks and attention-driven models, can enhance robustness.</p>
+                                <p>Recent empirical results on adversarial resilience in BCI applications are presented, alongside promising defense mechanisms such as adversarial training and GAN-assisted data augmentation. By integrating perspectives from artificial intelligence, cybersecurity, and neuroscience, this presentation advocates for interdisciplinary strategies to develop resilient, secure, and trustworthy BCI technologies.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="card p-6 md:p-10 rounded-2xl" aria-labelledby="guellouma-name">
+                    <div class="grid lg:grid-cols-[280px_1fr] gap-8 lg:gap-12 items-start">
+                        <div>
+                            <div class="speaker-portrait mb-6">
+                                <img src="Pr.%20Younes%20Guellouma.jfif.jpeg" alt="Professor Younes Guellouma" width="768" height="1376" loading="lazy">
+                            </div>
+                            <h3 id="guellouma-name" class="text-2xl font-bold text-yellow-400 mb-4">Pr. Younes Guellouma</h3>
+                            <h4 class="font-bold mb-3">Biography &amp; Research Profile</h4>
+                            <p class="text-slate-300 leading-relaxed mb-4">Director of the AI House (Maison de l'IA), Amar Telidji University of Laghouat, Algeria.</p>
+                            <p class="text-slate-300 leading-relaxed mb-4">Expert in Multi-Agent Systems, Cognitive Computing, RAG/CAG, and Generative AI Architectures.</p>
+                            <p class="text-slate-300 leading-relaxed">Leading national initiatives for AI integration in higher education and scientific research.</p>
+                        </div>
+                        <div>
+                            <div class="accent-border pl-4 mb-6">
+                                <p class="text-yellow-400 text-sm font-bold uppercase tracking-wider mb-3">Keynote Talk</p>
+                                <h4 class="text-2xl md:text-3xl font-bold leading-snug">Artificial Intelligence as a Tool for Research and Innovation</h4>
+                            </div>
+                            <h5 class="text-lg font-bold mb-3">Abstract</h5>
+                            <div class="text-slate-300 leading-relaxed space-y-4">
+                                <p>This presentation provides a transformative framework for integrating artificial intelligence into scientific discovery, shifting researchers' perspective from viewing AI as a simple shortcut or replacement to utilizing it as a controllable 'cognitive multiplier'.</p>
+                                <p>It gives researchers a clear, progressive roadmap moving from structured prompt engineering techniques to grounded document synthesis (Retrieval-Augmented Generation [RAG] and Cache-Augmented Generation [CAG] architectures to eliminate hallucinations) and autonomous agentic workflows that automate complex, multi-step literature reviews.</p>
+                                <p>Ultimately, it equips academics with actionable strategies to drastically scale their research productivity and hypothesis testing, while maintaining rigorous human oversight and neurosymbolic verification.</p>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    
+	<!-- Conference Program -->
+    <section id="program" class="py-24 gradient-bg" aria-labelledby="program-heading">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 scroll-reveal">
+                <h2 id="program-heading" class="text-3xl md:text-4xl font-bold mb-4 uppercase">Conference Program</h2>
+                <div class="h-1 w-24 bg-yellow-400 mx-auto"></div>
+            </div>
+            <div class="card p-8 md:p-12 rounded-2xl max-w-4xl mx-auto text-center scroll-reveal">
+                <p class="text-slate-300 leading-relaxed mb-8">
+                    Explore the NC-AIRIS'26 program and plan your conference day. The program provides the schedule of keynote talks and research sessions, bringing together ideas and advances in artificial intelligence. Please note that the program is provisional and may be updated.
+                </p>
+                <a href="NC-AIRIS26_Draft-Program.pdf" target="_blank" rel="noopener noreferrer" class="inline-block bg-yellow-400 text-slate-900 px-8 py-3 rounded-full font-bold hover:bg-yellow-300 transition shadow-lg shadow-yellow-400/20">
+                    View Draft Program (PDF)
+                </a>
+            </div>
+        </div>
+    </section>
+	
 	
 	<!-- Submission section -->
     <section id="submission" class="py-24 gradient-bg">
@@ -669,6 +787,7 @@
         mobileMenuBtn.addEventListener('click', () => {
             mobileMenuBtn.classList.toggle('active');
             mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.setAttribute('aria-expanded', String(!mobileMenu.classList.contains('hidden')));
         });
 
         // Close mobile menu when a link is clicked
@@ -677,6 +796,7 @@
             link.addEventListener('click', () => {
                 mobileMenuBtn.classList.remove('active');
                 mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             });
         });
 
@@ -685,6 +805,7 @@
             if (!e.target.closest('nav')) {
                 mobileMenuBtn.classList.remove('active');
                 mobileMenu.classList.add('hidden');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
             }
         });
 
