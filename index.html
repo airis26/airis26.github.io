@@ -308,6 +308,7 @@
             scroll-margin-top: 64px;
         }
     </style>
+    <link rel="stylesheet" href="moments.css">
 </head>
 <body>
     <!-- Navigation -->
@@ -321,14 +322,15 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden xl:flex items-center space-x-1">
-                    <a href="#home" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Home</a>
-                    <a href="#about" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">About</a>
-                    <a href="#program" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Program</a>
-                    <a href="#keynotes" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Keynote Speakers</a>
-                    <a href="#leadership" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Leadership</a>
-                    <a href="#pillars" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Research Pillars</a>
-                    <a href="#dates" class="nav-link px-4 py-2 text-sm font-medium smooth-scroll">Important Dates</a>
-                    <a href="#submission" class="ml-4 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full text-sm font-bold hover:bg-yellow-300 transition shadow-lg shadow-yellow-400/20">Submit</a>
+                    <a href="#home" class="nav-link px-2 py-2 text-sm font-medium smooth-scroll">Home</a>
+                    <a href="#moments" class="nav-link px-3 py-2 text-sm font-medium smooth-scroll">Moments</a>
+                    <a href="#about" class="nav-link px-2 py-2 text-sm font-medium smooth-scroll">About</a>
+                    <a href="#program" class="nav-link px-2 py-2 text-sm font-medium smooth-scroll">Program</a>
+                    <a href="#keynotes" class="nav-link px-2 py-2 text-sm font-medium smooth-scroll">Keynote Speakers</a>
+                    <a href="#leadership" class="nav-link px-2 py-2 text-sm font-medium smooth-scroll">Leadership</a>
+                    <a href="#pillars" class="nav-link px-2 py-2 text-sm font-medium smooth-scroll">Research Pillars</a>
+                    <a href="#dates" class="nav-link px-2 py-2 text-sm font-medium smooth-scroll">Important Dates</a>
+                    <a role="link" aria-disabled="true" title="Submissions and registration are closed." class="ml-4 bg-yellow-400 text-slate-900 px-6 py-2 rounded-full text-sm font-bold hover:bg-yellow-300 transition shadow-lg shadow-yellow-400/20">Submit</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
@@ -342,13 +344,14 @@
             <!-- Mobile Navigation Menu -->
             <div id="mobileMenu" class="hidden xl:hidden pb-4 space-y-2 max-h-[calc(100dvh-4rem)] overflow-y-auto">
                 <a href="#home" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Home</a>
+                <a href="#moments" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Moments</a>
                 <a href="#about" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">About</a>
                 <a href="#program" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Program</a>
                 <a href="#keynotes" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Keynote Speakers</a>
                 <a href="#leadership" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Leadership</a>
                 <a href="#pillars" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Research Pillars</a>
                 <a href="#dates" class="block px-4 py-2 text-sm font-medium hover:bg-slate-800 rounded-lg transition smooth-scroll">Important Dates</a>
-                <a href="#submission" class="block w-full text-center bg-yellow-400 text-slate-900 px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-300 transition mt-2">Submit Contribution</a>
+                <a role="link" aria-disabled="true" title="Submissions and registration are closed." class="block w-full text-center bg-yellow-400 text-slate-900 px-4 py-2 rounded-lg text-sm font-bold hover:bg-yellow-300 transition mt-2">Submit Contribution</a>
             </div>
         </div>
     </nav>
@@ -371,6 +374,34 @@
             </div>
         </div>
     </section>
+
+    <!-- Conference photo album -->
+    <section id="moments" class="py-24 bg-slate-950" aria-labelledby="moments-heading">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10">
+                <p class="text-yellow-400 text-sm font-bold tracking-widest uppercase mb-3">October 14, 2026 · University of Mascara</p>
+                <h2 id="moments-heading" class="text-3xl md:text-4xl font-bold mb-4">Moments from NC-AIRIS'26</h2>
+                <div class="h-1 w-24 bg-yellow-400 mx-auto mb-6"></div>
+                <p class="text-slate-300">A look back at the people and moments that made our conference special.</p>
+            </div>
+            <div id="moments-album" class="moments-album" role="region" aria-roledescription="carousel" aria-label="Conference photos" tabindex="0">
+                <div class="moments-topbar"><span>NC-AIRIS'26 <span class="moments-muted">/ Photo album</span></span><span id="moments-count" aria-live="polite" aria-atomic="true"></span></div>
+                <div class="moments-stage" id="moments-stage">
+                    <button type="button" id="moments-expand" class="moments-expand" aria-label="Enlarge current photo"><img id="moments-photo" src="photos/845819578_122240912066569317_806402299721061353_n.jpg" alt="NC-AIRIS'26 conference, photo 1" loading="lazy"></button>
+                    <button type="button" class="moments-arrow moments-prev" id="moments-prev" aria-label="Previous photo">&#10094;</button>
+                    <button type="button" class="moments-arrow moments-next" id="moments-next" aria-label="Next photo">&#10095;</button>
+                    <span class="moments-hint">Tap photo to enlarge</span>
+                </div>
+                <div class="moments-bottom"><p>Swipe or use the arrows to explore.</p><button type="button" id="moments-play" aria-pressed="false">Play slideshow</button></div>
+                <div id="moments-thumbnails" class="moments-thumbnails" aria-label="Choose a photo"></div>
+            </div>
+        </div>
+    </section>
+    <dialog id="moments-dialog" aria-label="Enlarged conference photo">
+        <button type="button" id="moments-close" class="moments-close" aria-label="Close enlarged photo">&#10005;</button>
+        <img id="moments-large" alt="">
+        <div class="moments-dialog-controls"><button type="button" id="moments-large-prev" aria-label="Previous photo">&#10094;</button><span id="moments-large-count" aria-live="polite"></span><button type="button" id="moments-large-next" aria-label="Next photo">&#10095;</button></div>
+    </dialog>
 
     <!-- About Section -->
     <section id="about" class="py-24 bg-slate-900">
@@ -665,7 +696,7 @@
 					
 					<p class="font-bold text-yellow-400">
 						 <strong>Online Submission:</strong> 
-						<a href="https://cmt3.research.microsoft.com/NCAIRIS2026" target="_blank">
+						<a role="link" aria-disabled="true" title="Submissions are closed.">
 						 https://cmt3.research.microsoft.com/NCAIRIS2026
 						</a>
 					 </p>
@@ -749,7 +780,7 @@
                         </p>
                     </div>
                     <div class="mt-8 scroll-reveal">
-                        <a href="https://forms.gle/a7QRtyddsyyqjuQY7" target="_blank" class="block w-full text-center bg-yellow-400 text-slate-900 py-4 rounded-xl font-bold text-xl hover:bg-yellow-300 transition shadow-lg shadow-yellow-400/20">
+                        <a role="link" aria-disabled="true" title="Submissions and registration are closed." class="block w-full text-center bg-yellow-400 text-slate-900 py-4 rounded-xl font-bold text-xl hover:bg-yellow-300 transition shadow-lg shadow-yellow-400/20">
                             REGISTER NOW
                         </a>
                     </div>
@@ -868,5 +899,7 @@
             });
         });
     </script>
+    <script src="moments-photos.js"></script>
+    <script src="moments.js"></script>
 </body>
 </html>
